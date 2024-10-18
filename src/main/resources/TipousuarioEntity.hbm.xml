@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="sv.edu.udb.www.webgestordecasos.entities.TipousuarioEntity" table="tipousuario"
+           schema="bdd_telecomunicaciones_sv">
+        <id name="idTipoUsuario">
+            <column name="id_tipo_usuario" sql-type="int(11)"/>
+        </id>
+        <property name="nombreTipoUsuario">
+            <column name="nombre_tipo_usuario" sql-type="varchar(50)" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

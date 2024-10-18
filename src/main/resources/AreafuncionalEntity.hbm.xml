@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="sv.edu.udb.www.webgestordecasos.entities.AreafuncionalEntity" table="areafuncional"
+           schema="bdd_telecomunicaciones_sv">
+        <id name="idArea">
+            <column name="id_area" sql-type="int(11)"/>
+        </id>
+        <property name="area">
+            <column name="area" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="sv.edu.udb.www.webgestordecasos.entities.CasosEntity" table="casos"
+           schema="bdd_telecomunicaciones_sv">
+        <id name="idCasos">
+            <column name="id_casos" sql-type="varchar(15)" length="15"/>
+        </id>
+        <property name="fechaRegistro">
+            <column name="fecha_registro" sql-type="date" not-null="true"/>
+        </property>
+        <property name="fechaVencimiento">
+            <column name="fecha_vencimiento" sql-type="date" not-null="true"/>
+        </property>
+        <property name="idEstadoCaso">
+            <column name="id_estado_caso" sql-type="int(11)"/>
+        </property>
+        <property name="infoRechazo">
+            <column name="info_rechazo" sql-type="text" not-null="true"/>
+        </property>
+        <property name="detalles">
+            <column name="detalles" sql-type="text"/>
+        </property>
+        <property name="progreso">
+            <column name="progreso" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="idUsuarioCaso">
+            <column name="id_usuario_caso" sql-type="varchar(8)" length="8" not-null="true"/>
+        </property>
+        <property name="idUsuarioProgramador">
+            <column name="id_usuario_programador" sql-type="varchar(8)" length="8" not-null="true"/>
+        </property>
+        <property name="idUsuarioTester">
+            <column name="id_usuario_tester" sql-type="varchar(8)" length="8" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

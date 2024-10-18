@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="sv.edu.udb.www.webgestordecasos.entities.UsuarioEntity" table="usuario"
+           schema="bdd_telecomunicaciones_sv">
+        <id name="idUsuario">
+            <column name="id_usuario" sql-type="varchar(8)" length="8"/>
+        </id>
+        <property name="nombre">
+            <column name="nombre" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="apellido">
+            <column name="apellido" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="telefono">
+            <column name="telefono" sql-type="varchar(9)" length="9"/>
+        </property>
+        <property name="dui">
+            <column name="dui" sql-type="varchar(30)" length="30"/>
+        </property>
+        <property name="correo">
+            <column name="correo" sql-type="varchar(40)" length="40"/>
+        </property>
+        <property name="contrasenia">
+            <column name="contrasenia" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="idAreaFuncional"  insert="false" update="false"> <!-- duplicated column fix: insert="false" update="false" -->
+            <column name="id_area_funcional" sql-type="int(11)" />
+        </property>
+        <property name="idTipoUsuario" insert="false" update="false"> <!-- duplicated column fix: insert="false" update="false" -->
+            <column name="id_tipo_usuario" sql-type="int(11)"/>
+        </property>
+        <property name="idJefeUsuario" insert="false" update="false"> <!-- duplicated column fix: insert="false" update="false" -->
+            <column name="id_jefe_usuario" sql-type="varchar(8)" length="8" not-null="true"/>
+        </property>
+        <property name="idCasoBitacora">
+            <column name="id_caso_bitacora" sql-type="int(11)" not-null="true"/>
+        </property>
+        <many-to-one name="areafuncionalByIdAreaFuncional"
+                     class="sv.edu.udb.www.webgestordecasos.entities.AreafuncionalEntity">
+            <column name="id_area_funcional"/>
+        </many-to-one>
+        <many-to-one name="tipousuarioByIdTipoUsuario"
+                     class="sv.edu.udb.www.webgestordecasos.entities.TipousuarioEntity">
+            <column name="id_tipo_usuario"/>
+        </many-to-one>
+        <many-to-one name="usuarioByIdJefeUsuario" class="sv.edu.udb.www.webgestordecasos.entities.UsuarioEntity">
+            <column name="id_jefe_usuario" not-null="true"/>
+        </many-to-one>
+        <set name="casosByIdUsuario" inverse="true">
+            <key>
+                <column name="id_usuario_caso" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="sv.edu.udb.www.webgestordecasos.entities.CasosEntity"/>
+        </set>
+        <set name="casosByIdUsuario_0" inverse="true">
+            <key>
+                <column name="id_usuario_programador" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="sv.edu.udb.www.webgestordecasos.entities.CasosEntity"/>
+        </set>
+        <set name="casosByIdUsuario_1" inverse="true">
+            <key>
+                <column name="id_usuario_tester" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="sv.edu.udb.www.webgestordecasos.entities.CasosEntity"/>
+        </set>
+        <set name="usuariosByIdUsuario" inverse="true">
+            <key>
+                <column name="id_jefe_usuario" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="sv.edu.udb.www.webgestordecasos.entities.UsuarioEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
